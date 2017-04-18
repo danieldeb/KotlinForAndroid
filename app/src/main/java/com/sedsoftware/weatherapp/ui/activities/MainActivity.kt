@@ -1,6 +1,6 @@
-package com.sedsoftware.weatherapp.activities
+package com.sedsoftware.weatherapp.ui.activities
 
-import adapters.ForecastListAdapter
+import com.sedsoftware.weatherapp.ui.adapters.ForecastListAdapter
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
