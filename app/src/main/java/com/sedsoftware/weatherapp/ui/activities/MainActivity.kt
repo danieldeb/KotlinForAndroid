@@ -4,9 +4,14 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import com.sedsoftware.weatherapp.BuildConfig
 import com.sedsoftware.weatherapp.R
+import com.sedsoftware.weatherapp.data.Request
 import com.sedsoftware.weatherapp.ui.adapters.ForecastListAdapter
+import org.jetbrains.anko.custom.async
 import org.jetbrains.anko.find
+import org.jetbrains.anko.longToast
+import org.jetbrains.anko.uiThread
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,5 +32,15 @@ class MainActivity : AppCompatActivity() {
         val forecastList: RecyclerView = find(R.id.forecast_list)
         forecastList.layoutManager = LinearLayoutManager(this)
         forecastList.adapter = ForecastListAdapter(items)
+
+        val apiKey = BuildConfig.OPENWEATHER_API_KEY
+
+        val url = "http://api.openweathermap.org/data/2.5/forecast/daily?APPID=$apiKey" +
+                "&q=Krasnodar&mode=json&units=metric&cnt=7"
+
+        async {
+            Request(url).run()
+            uiThread { longToast("Request performed") }
+        }
     }
 }
