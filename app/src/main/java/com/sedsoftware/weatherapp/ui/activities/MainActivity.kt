@@ -16,23 +16,23 @@ import org.jetbrains.anko.uiThread
 class MainActivity : AppCompatActivity() {
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContentView(R.layout.activity_main)
 
-        val forecastList: RecyclerView = find(R.id.forecast_list)
-        forecastList.layoutManager = LinearLayoutManager(this)
+    val forecastList: RecyclerView = find(R.id.forecast_list)
+    forecastList.layoutManager = LinearLayoutManager(this)
 
-        doAsync {
-            val result = RequestForecastCommand("94043").execute()
-            uiThread {
-                forecastList.adapter = ForecastListAdapter(result,
-                    object: ForecastListAdapter.OnItemClickListener {
-                        override fun invoke(forecast: Forecast) {
-                            toast(forecast.date)
-                        }
-                    })
-            }
-        }
+    doAsync {
+      val result = RequestForecastCommand("94043").execute()
+      uiThread {
+        forecastList.adapter = ForecastListAdapter(result,
+            object : ForecastListAdapter.OnItemClickListener {
+              override fun invoke(forecast: Forecast) {
+                toast(forecast.date)
+              }
+            })
+      }
     }
+  }
 }

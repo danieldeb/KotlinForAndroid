@@ -6,11 +6,11 @@ import com.sedsoftware.weatherapp.domain.model.ForecastList
 
 class RequestForecastCommand(val zipCode: String) : Command<ForecastList> {
 
-    override fun execute(): ForecastList {
-        val forecastRequest = ForecastRequest(zipCode)
-        return ForecastDataMapper().convertFromDataModel(
-                forecastRequest.execute()
-        )
-    }
+  override fun execute(): ForecastList {
+    val forecastRequest = ForecastRequest(zipCode)
+    return ForecastDataMapper().convertFromDataModel(
+        forecastRequest.execute()
+    )
+  }
 
 }
