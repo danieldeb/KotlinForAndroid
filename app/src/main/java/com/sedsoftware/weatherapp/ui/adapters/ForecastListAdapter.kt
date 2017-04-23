@@ -26,7 +26,7 @@ class ForecastListAdapter(val weekForecast: ForecastList,
     holder.bindForecast(weekForecast[position])
   }
 
-  override fun getItemCount(): Int = weekForecast.size()
+  override fun getItemCount() = weekForecast.size()
 
   class ViewHolder(view: View, val itemClick: (Forecast) -> Unit) : RecyclerView.ViewHolder(view) {
 
