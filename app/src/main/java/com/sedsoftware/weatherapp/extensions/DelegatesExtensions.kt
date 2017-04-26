@@ -1,4 +1,4 @@
-package com.sedsoftware.weatherapp.ui.utils
+package com.sedsoftware.weatherapp.extensions
 
 import kotlin.reflect.KProperty
 

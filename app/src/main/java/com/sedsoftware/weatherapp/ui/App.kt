@@ -1,7 +1,7 @@
 package com.sedsoftware.weatherapp.ui
 
 import android.app.Application
-import com.sedsoftware.weatherapp.ui.utils.DelegatesExt
+import com.sedsoftware.weatherapp.extensions.DelegatesExt
 
 class App : Application() {
 

@@ -1,15 +1,15 @@
-package com.sedsoftware.weatherapp.data
+package com.sedsoftware.weatherapp.data.server
 
 import com.google.gson.Gson
 import com.sedsoftware.weatherapp.BuildConfig
 import java.net.URL
 
-class ForecastRequest(val zipCode: String) {
+class ForecastRequest(val zipCode: Long) {
 
   companion object {
     private val APP_ID = BuildConfig.OPENWEATHER_API_KEY
     private val URL = "http://api.openweathermap.org/data/2.5/forecast/daily?mode=json&units=metric&cnt=7"
-    private val COMPLETE_URL = "$URL&APPID=$APP_ID&q="
+    private val COMPLETE_URL = "${URL}&APPID=${APP_ID}&q="
   }
 
   fun execute(): ForecastResult {

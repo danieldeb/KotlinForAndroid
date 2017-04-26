@@ -1,4 +1,4 @@
-package com.sedsoftware.weatherapp.data
+package com.sedsoftware.weatherapp.data.server
 
 data class ForecastResult(val city: City, val list: List<Forecast>)
 
