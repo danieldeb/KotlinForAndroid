@@ -4,7 +4,7 @@ import com.google.gson.Gson
 import com.sedsoftware.weatherapp.BuildConfig
 import java.net.URL
 
-class ForecastRequest(val zipCode: Long) {
+class ForecastByZipCodeRequest(val zipCode: Long, val gson: Gson = Gson()) {
 
   companion object {
     private val APP_ID = BuildConfig.OPENWEATHER_API_KEY
@@ -14,6 +14,6 @@ class ForecastRequest(val zipCode: Long) {
 
   fun execute(): ForecastResult {
     val forecastJsonStr = URL(COMPLETE_URL + zipCode).readText()
-    return Gson().fromJson(forecastJsonStr, ForecastResult::class.java)
+    return gson.fromJson(forecastJsonStr, ForecastResult::class.java)
   }
 }

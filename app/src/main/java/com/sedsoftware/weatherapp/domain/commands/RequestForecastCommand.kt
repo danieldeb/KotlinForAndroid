@@ -1,16 +1,18 @@
 package com.sedsoftware.weatherapp.domain.commands
 
-import com.sedsoftware.weatherapp.data.server.ForecastRequest
-import com.sedsoftware.weatherapp.domain.mappers.ForecastDataMapper
+import com.sedsoftware.weatherapp.domain.datasource.ForecastProvider
 import com.sedsoftware.weatherapp.domain.model.ForecastList
 
-class RequestForecastCommand(val zipCode: Long) : Command<ForecastList> {
+class RequestForecastCommand(
+    val zipCode: Long,
+    val forecastProvider: ForecastProvider = ForecastProvider()) :
+    Command<ForecastList> {
 
-  override fun execute(): ForecastList {
-    val forecastRequest = ForecastRequest(zipCode)
-    return ForecastDataMapper().convertFromDataModel(zipCode,
-        forecastRequest.execute()
-    )
+  companion object {
+    val DAYS = 7
   }
 
+  override fun execute(): ForecastList {
+    return forecastProvider.requestByZipCode(zipCode, DAYS)
+  }
 }
