@@ -19,8 +19,7 @@ class ServerDataMapper {
   }
 
   private fun convertForecastItemToDomain(forecast: Forecast) = with(forecast) {
-    com.sedsoftware.weatherapp.domain.model.Forecast(dt, weather[0].description, temp.max.toInt(),
-        temp.min.toInt(),
+    ModelForecast(-1, dt, weather[0].description, temp.max.toInt(), temp.min.toInt(),
         generateIconUrl(weather[0].icon))
   }
 

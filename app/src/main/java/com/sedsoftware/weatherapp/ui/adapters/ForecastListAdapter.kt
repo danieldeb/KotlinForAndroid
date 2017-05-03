@@ -8,13 +8,11 @@ import com.sedsoftware.weatherapp.R
 import com.sedsoftware.weatherapp.domain.model.Forecast
 import com.sedsoftware.weatherapp.domain.model.ForecastList
 import com.sedsoftware.weatherapp.extensions.ctx
+import com.sedsoftware.weatherapp.extensions.toDateString
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_forecast.view.*
-import java.text.DateFormat
-import java.util.*
 
-class ForecastListAdapter(val weekForecast: ForecastList,
-    val itemClick: (Forecast) -> Unit) :
+class ForecastListAdapter(val weekForecast: ForecastList, val itemClick: (Forecast) -> Unit) :
     RecyclerView.Adapter<ForecastListAdapter.ViewHolder>() {
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -33,17 +31,12 @@ class ForecastListAdapter(val weekForecast: ForecastList,
     fun bindForecast(forecast: Forecast) {
       with(forecast) {
         Picasso.with(itemView.ctx).load(iconUrl).into(itemView.icon)
-        itemView.date.text = convertDate(date)
+        itemView.date.text = date.toDateString()
         itemView.description.text = description
         itemView.maxTemperature.text = "${high}º"
         itemView.minTemperature.text = "${low}º"
         itemView.setOnClickListener { itemClick(this) }
       }
-    }
-
-    private fun convertDate(date: Long): String {
-      val df = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.getDefault())
-      return df.format(date)
     }
   }
 }
